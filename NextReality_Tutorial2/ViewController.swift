@@ -13,6 +13,8 @@ import ARKit
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
+    // 2.2
+    var grids = [Grid]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,9 +80,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
     }
     
+    // 2.3
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         let grid = Grid(anchor: anchor as! ARPlaneAnchor)
-        //self.planes.append(plane)
+        self.grids.append(grid)
         node.addChildNode(grid)
     }
+    
+    // 2.4
+    func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        let grid = self.grids.filter { grid in
+            return grid.anchor.identifier == anchor.identifier
+            }.first
+        
+        guard let foundGrid = grid else {
+            return
+        }
+        
+        foundGrid.update(anchor: anchor as! ARPlaneAnchor)
+    }
+    
 }
