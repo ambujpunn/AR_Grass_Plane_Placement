@@ -1,0 +1,6 @@
+version: "Apple Swift version 4.0.3 (swiftlang-900.0.74.1 clang-900.0.39.2)"
+options: "80ee24119abd4c8bd19c8632efc292dd"
+build_time: [1525281409, 36792000]
+inputs:
+  "/Users/ambujpunn/dev/iOS/Next Reality/NextReality_Tutorial2/NextReality_Tutorial2/ViewController.swift": [1525281403, 0]
+  "/Users/ambujpunn/dev/iOS/Next Reality/NextReality_Tutorial2/NextReality_Tutorial2/AppDelegate.swift": [1525281403, 0]
