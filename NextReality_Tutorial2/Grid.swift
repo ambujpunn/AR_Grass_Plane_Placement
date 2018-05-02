@@ -10,7 +10,7 @@ import Foundation
 import SceneKit
 import ARKit
 
-class OverlayPlane : SCNNode {
+class Grid : SCNNode {
     
     var anchor: ARPlaneAnchor
     var planeGeometry: SCNPlane!

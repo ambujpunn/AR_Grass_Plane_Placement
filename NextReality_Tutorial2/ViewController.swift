@@ -77,4 +77,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        let grid = Grid(anchor: anchor as! ARPlaneAnchor)
+        //self.planes.append(plane)
+        node.addChildNode(grid)
+    }
 }

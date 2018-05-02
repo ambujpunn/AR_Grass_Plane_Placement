@@ -13,7 +13,7 @@
 		610BD77D209A29FB00704475 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610BD77B209A29FB00704475 /* Main.storyboard */; };
 		610BD77F209A29FB00704475 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 610BD77E209A29FB00704475 /* Assets.xcassets */; };
 		610BD782209A29FB00704475 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610BD780209A29FB00704475 /* LaunchScreen.storyboard */; };
-		61E4FB7E209A809B00A40ED5 /* OverlayPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4FB7D209A809B00A40ED5 /* OverlayPlane.swift */; };
+		61E4FB7E209A809B00A40ED5 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4FB7D209A809B00A40ED5 /* Grid.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,7 +25,7 @@
 		610BD77E209A29FB00704475 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		610BD781209A29FB00704475 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		610BD783209A29FB00704475 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		61E4FB7D209A809B00A40ED5 /* OverlayPlane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayPlane.swift; sourceTree = "<group>"; };
+		61E4FB7D209A809B00A40ED5 /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 				610BD77E209A29FB00704475 /* Assets.xcassets */,
 				610BD780209A29FB00704475 /* LaunchScreen.storyboard */,
 				610BD783209A29FB00704475 /* Info.plist */,
-				61E4FB7D209A809B00A40ED5 /* OverlayPlane.swift */,
+				61E4FB7D209A809B00A40ED5 /* Grid.swift */,
 			);
 			path = NextReality_Tutorial2;
 			sourceTree = "<group>";
@@ -144,7 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				610BD77A209A29FB00704475 /* ViewController.swift in Sources */,
-				61E4FB7E209A809B00A40ED5 /* OverlayPlane.swift in Sources */,
+				61E4FB7E209A809B00A40ED5 /* Grid.swift in Sources */,
 				610BD776209A29FB00704475 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
