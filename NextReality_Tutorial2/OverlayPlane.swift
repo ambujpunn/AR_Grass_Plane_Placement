@@ -15,7 +15,7 @@ class OverlayPlane : SCNNode {
     var anchor: ARPlaneAnchor
     var planeGeometry: SCNPlane!
     
-    init(anchor :ARPlaneAnchor) {
+    init(anchor: ARPlaneAnchor) {
         self.anchor = anchor
         super.init()
         setup()
@@ -25,7 +25,7 @@ class OverlayPlane : SCNNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(anchor :ARPlaneAnchor) {
+    func update(anchor: ARPlaneAnchor) {
         planeGeometry.width = CGFloat(anchor.extent.x);
         planeGeometry.height = CGFloat(anchor.extent.z);
         position = SCNVector3Make(anchor.center.x, 0, anchor.center.z);
