@@ -29,7 +29,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
         // Create a new scene
-        let scene = SCNScene(named: "art.scnassets/ship.scn")!
+        // 2.7
+        let scene = SCNScene()
         
         // Set the scene to the view
         sceneView.scene = scene
