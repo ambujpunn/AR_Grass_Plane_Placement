@@ -10,7 +10,8 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+// 2.5
+class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
     // 2.2
@@ -24,6 +25,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
+        // 2.6
+        sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
         // Create a new scene
         let scene = SCNScene(named: "art.scnassets/ship.scn")!
@@ -37,8 +40,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
+        // 2.5
+        configuration.planeDetection = .horizontal
 
         // Run the view's session
+        sceneView.session.delegate = self
         sceneView.session.run(configuration)
     }
     
