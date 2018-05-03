@@ -120,7 +120,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         // 2.
         let hitTestResult = sceneView.hitTest(touchPosition, types: .featurePoint)
         
-        // 3.
         if !hitTestResult.isEmpty {
             
             guard let hitResult = hitTestResult.first else {
@@ -133,6 +132,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     // 4.3
     func addGrass(hitTestResult: ARHitTestResult) {
+        // 1.
+        let scene = SCNScene(named: "art.scnassets/grass.scn")!
+        let grassNode = scene.rootNode.childNode(withName: "grass", recursively: true)
+        grassNode?.position = SCNVector3(hitTestResult.worldTransform.columns.3.x,hitTestResult.worldTransform.columns.3.y, hitTestResult.worldTransform.columns.3.z)
         
+        // 2.
+        self.sceneView.scene.rootNode.addChildNode(grassNode!)
     }
 }
