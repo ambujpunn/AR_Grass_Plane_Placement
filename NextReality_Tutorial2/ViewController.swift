@@ -93,13 +93,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     // 2.3
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        // 5.2
+        /*
         let grid = Grid(anchor: anchor as! ARPlaneAnchor)
         self.grids.append(grid)
-        node.addChildNode(grid)
+        node.addChildNode(grid)*/
     }
     
     // 2.4
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
+        // 5.2
+        /*
         let grid = self.grids.filter { grid in
             return grid.anchor.identifier == anchor.identifier
             }.first
@@ -108,7 +112,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
             return
         }
         
-        foundGrid.update(anchor: anchor as! ARPlaneAnchor)
+        foundGrid.update(anchor: anchor as! ARPlaneAnchor)*/
     }
     
     // 4.2
