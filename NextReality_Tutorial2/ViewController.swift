@@ -102,7 +102,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
         let grid = self.grids.filter { grid in
             return grid.anchor.identifier == anchor.identifier
-            }.first
+        }.first
         
         guard let foundGrid = grid else {
             return
@@ -118,6 +118,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let touchPosition = gesture.location(in: sceneView)
         
         // 2.
+        
         // 5.1
         let hitTestResult = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
         
@@ -139,6 +140,33 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         grassNode?.position = SCNVector3(hitTestResult.worldTransform.columns.3.x,hitTestResult.worldTransform.columns.3.y, hitTestResult.worldTransform.columns.3.z)
         
         // 2.
-        self.sceneView.scene.rootNode.addChildNode(grassNode!)
+        
+        // 5.2.1
+        // Identify which grid node to remove
+        
+        // Get identifier of hitTestResult's anchor
+        let hitTestResultAnchorId = hitTestResult.anchor?.identifier
+        let gridNode = self.grids.filter { (grid) -> Bool in
+            return grid.anchor.identifier == hitTestResultAnchorId
+        }.first
+        
+        // 5.2.2
+        // If grid node found, replace grid with grass. Else, simply place grass on top of grid
+        if let gridNodeFound = gridNode {
+            // Remove grid from scene
+            gridNodeFound.removeFromParentNode()
+            
+            // Remove grid from grid array
+            self.grids = self.grids.filter {$0.anchor.identifier != gridNodeFound.anchor.identifier}
+            
+            // Remove gridNode anchor
+            self.sceneView.session.remove(anchor: gridNodeFound.anchor)
+            
+            // Add grass node
+            self.sceneView.scene.rootNode.addChildNode(grassNode!)
+        }
+        else {
+            self.sceneView.scene.rootNode.addChildNode(grassNode!)
+        }
     }
 }
