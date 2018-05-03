@@ -34,6 +34,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        // 4.1
+        let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
+        sceneView.addGestureRecognizer(gestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,4 +111,28 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         foundGrid.update(anchor: anchor as! ARPlaneAnchor)
     }
     
+    // 4.2
+    @objc func tapped(gesture: UITapGestureRecognizer) {
+        // 1.
+        // Get exact position where touch happened on screen of iPhone (2D coordinate)
+        let touchPosition = gesture.location(in: sceneView)
+        
+        // 2.
+        let hitTestResult = sceneView.hitTest(touchPosition, types: .featurePoint)
+        
+        // 3.
+        if !hitTestResult.isEmpty {
+            
+            guard let hitResult = hitTestResult.first else {
+                return
+            }
+            
+            addGrass(hitTestResult: hitResult)
+        }
+    }
+    
+    // 4.3
+    func addGrass(hitTestResult: ARHitTestResult) {
+        
+    }
 }
