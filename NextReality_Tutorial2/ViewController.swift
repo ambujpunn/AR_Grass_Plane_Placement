@@ -118,7 +118,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         let touchPosition = gesture.location(in: sceneView)
         
         // 2.
-        let hitTestResult = sceneView.hitTest(touchPosition, types: .featurePoint)
+        // 5.1
+        let hitTestResult = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
         
         if !hitTestResult.isEmpty {
             
