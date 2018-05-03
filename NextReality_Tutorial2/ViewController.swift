@@ -17,9 +17,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     // 2.2
     var grids = [Grid]()
     
-    // 5.4
-    var tappedTwice = false
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -41,12 +38,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         // 4.1
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
         sceneView.addGestureRecognizer(gestureRecognizer)
-        
-        // 5.3
-        let doubleTapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
-        doubleTapGestureRecognizer.numberOfTapsRequired = 2
-        gestureRecognizer.require(toFail: doubleTapGestureRecognizer)
-        sceneView.addGestureRecognizer(doubleTapGestureRecognizer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -102,28 +93,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
     
     // 2.3
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        // 5.5
-        if tappedTwice == false {
-            let grid = Grid(anchor: anchor as! ARPlaneAnchor)
-            self.grids.append(grid)
-            node.addChildNode(grid)
-        }
+        let grid = Grid(anchor: anchor as! ARPlaneAnchor)
+        self.grids.append(grid)
+        node.addChildNode(grid)
     }
     
     // 2.4
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        // 5.5
-        if tappedTwice == false {
-            let grid = self.grids.filter { grid in
-                return grid.anchor.identifier == anchor.identifier
-                }.first
-            
-            guard let foundGrid = grid else {
-                return
-            }
-            
-            foundGrid.update(anchor: anchor as! ARPlaneAnchor)
+        let grid = self.grids.filter { grid in
+            return grid.anchor.identifier == anchor.identifier
+        }.first
+        
+        guard let foundGrid = grid else {
+            return
         }
+        
+        foundGrid.update(anchor: anchor as! ARPlaneAnchor)
     }
     
     // 4.2
@@ -183,10 +168,5 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         else {
             self.sceneView.scene.rootNode.addChildNode(grassNode!)
         }
-    }
-    
-    // 5.6
-    @objc func doubleTapped(gesture: UITapGestureRecognizer) {
-        tappedTwice = !tappedTwice
     }
 }
