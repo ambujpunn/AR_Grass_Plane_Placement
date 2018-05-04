@@ -1,5 +1,5 @@
 //
-//  OverlayPlane.swift
+//  Grid.swift
 //  NextReality_Tutorial2
 //
 //  Created by Ambuj Punn on 5/2/18.
