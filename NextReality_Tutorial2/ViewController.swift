@@ -10,11 +10,9 @@ import UIKit
 import SceneKit
 import ARKit
 
-// 2.5
 class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
-    // 2.2
     var grids = [Grid]()
     
     override func viewDidLoad() {
@@ -25,17 +23,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         
         // Show statistics such as fps and timing information
         sceneView.showsStatistics = true
-        // 2.6
         sceneView.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
         
         // Create a new scene
-        // 2.7
         let scene = SCNScene()
         
         // Set the scene to the view
         sceneView.scene = scene
         
-        // 4.1
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped))
         sceneView.addGestureRecognizer(gestureRecognizer)
     }
@@ -45,7 +40,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         
         // Create a session configuration
         let configuration = ARWorldTrackingConfiguration()
-        // 2.5
         configuration.planeDetection = .horizontal
 
         // Run the view's session
@@ -91,18 +85,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         
     }
     
-    // 2.3
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        // 5.2
         /*
         let grid = Grid(anchor: anchor as! ARPlaneAnchor)
         self.grids.append(grid)
         node.addChildNode(grid)*/
     }
     
-    // 2.4
     func renderer(_ renderer: SCNSceneRenderer, didUpdate node: SCNNode, for anchor: ARAnchor) {
-        // 5.2
         /*
         let grid = self.grids.filter { grid in
             return grid.anchor.identifier == anchor.identifier
@@ -115,14 +105,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         foundGrid.update(anchor: anchor as! ARPlaneAnchor)*/
     }
     
-    // 4.2
     @objc func tapped(gesture: UITapGestureRecognizer) {
-        // 1.
         // Get exact position where touch happened on screen of iPhone (2D coordinate)
         let touchPosition = gesture.location(in: sceneView)
-        
-        // 2.
-        // 5.1
+
         let hitTestResult = sceneView.hitTest(touchPosition, types: .existingPlaneUsingExtent)
         
         if !hitTestResult.isEmpty {
@@ -135,14 +121,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
         }
     }
     
-    // 4.3
     func addGrass(hitTestResult: ARHitTestResult) {
-        // 1.
         let scene = SCNScene(named: "art.scnassets/grass.scn")!
         let grassNode = scene.rootNode.childNode(withName: "grass", recursively: true)
         grassNode?.position = SCNVector3(hitTestResult.worldTransform.columns.3.x,hitTestResult.worldTransform.columns.3.y, hitTestResult.worldTransform.columns.3.z)
         
-        // 2.
         self.sceneView.scene.rootNode.addChildNode(grassNode!)
     }
 }
