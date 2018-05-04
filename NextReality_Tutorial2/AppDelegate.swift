@@ -3,7 +3,7 @@
 //  NextReality_Tutorial2
 //
 //  Created by Ambuj Punn on 5/2/18.
-//  Copyright © 2018 Next Reality. All rights reserved.
+//  Copyright © 2018 Ambuj Punn. All rights reserved.
 //
 
 import UIKit
